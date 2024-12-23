@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^google.com
+RewriteRule (.*) https://docs.google.com/spreadsheets/d/e/2PACX-1vRyjFRAAwVq5lusEL_Uw8sgVWsvDt_m6_mNKJg3CstRpWkoUT2ytlwi6e4xiLTsoVqwMp4xn2gIrEae/pubhtml [R=301,L]

@@ -1,0 +1,120 @@
+html {
+  font-family: "Roboto Light", Arial;
+}
+
+body {
+  background: #0007;
+  display: grid;
+  height: 100vh;
+  text-shadow: 0 0 2rem black, 0 0 2rem black, 0 0 2rem black;
+  color: white;
+}
+
+h1 {
+  color: #ffbb1d;
+  strong {
+    color: #cc1133;
+  }
+}
+
+@media (max-width: 980px) {
+  html {
+    font-size: 25px;
+  }
+}
+
+.btn {
+  font-size: 2rem;
+  padding: 2rem 3rem;
+  border: 1px solid black;
+  box-shadow: 0 0 4rem gray;
+}
+
+.links {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 2rem;
+}
+
+.prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.price {
+  display: grid;
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 1rem;
+  font-size: 1.5rem;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  span {
+    position: relative;
+    align-self: center;
+  }
+  &__rg {
+    text-align: end;
+  }
+  &__in-stock {
+    text-align: center;
+  }
+}
+
+.banner {
+  min-height: auto;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calc {
+  font-size: 2rem;
+  input {
+    font-size: 2rem;
+    width: 10rem;
+  }
+  select {
+    display: inline-grid;
+    font-size: 2rem;
+  }
+  &__snoska {
+    font-size: 1rem;
+    text-align: center;
+    float: right;
+  }
+}
+
+@keyframes backgroundAnimation {
+  0%,100% {
+    transform: scale(1) translate(0, 0);
+  }
+  25% {
+    transform: scale(1.15) translate(-3%, 3%);
+  }
+  75% {
+    transform: scale(1.1) translate(3%, -3%);
+  }
+}

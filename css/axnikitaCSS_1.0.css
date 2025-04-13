@@ -1,0 +1,261 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0
+}
+
+:focus, :active {
+    outline: none
+}
+
+a:focus, a:active {
+    outline: none
+}
+
+nav, footer, header, aside {
+    display: block
+}
+
+:root {
+    --ax-white: #fff;
+    --ax-post: #f8f8f8;
+    --ax-lightgray: #686868;
+    --ax-gray: #383838;
+    --ax-black: #000;
+    --ax-red: #f22;
+    --ax-green: #2f2;
+    --ax-blue: #22f;
+    --ax-blood: #c13;
+    --ax-orange: #ffbb1d;
+    --ax-seagreen: #2fe085
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background: var(--ax-white)
+}
+
+html, body, div, nav {
+    --scrollbar-border-radius: 4px
+}
+
+html ::-webkit-scrollbar, body ::-webkit-scrollbar, div ::-webkit-scrollbar, nav ::-webkit-scrollbar {
+    width: var(--scrollbar-width, 8px);
+    background-color: var(--scrollbar-track-color, var(--ax-post))
+}
+
+html ::-webkit-scrollbar-thumb, body ::-webkit-scrollbar-thumb, div ::-webkit-scrollbar-thumb, nav ::-webkit-scrollbar-thumb {
+    border-radius: var(--scrollbar-border-radius, 0);
+    background-color: var(--scrollbar-thumb-color, var(--ax-lightgray))
+}
+
+html ::-webkit-scrollbar-track, body ::-webkit-scrollbar-track, div ::-webkit-scrollbar-track, nav ::-webkit-scrollbar-track {
+    -webkit-box-shadow: var(--scrollbar-shadow, 0);
+    border-radius: var(--scrollbar-border-radius, 0);
+    background-color: var(--scrollbar-track-color, var(--ax-post))
+}
+
+input, button, textarea {
+    font-size: 1rem;
+    font-family: inherit
+}
+
+input::-ms-clear {
+    display: none
+}
+
+button {
+    cursor: pointer
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: var(--ax-blue)
+}
+
+a:hover {
+    text-decoration: none
+}
+
+ul li {
+    list-style: none
+}
+
+img {
+    vertical-align: top
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0
+}
+
+h1 {
+    font-size: 2.5rem
+}
+
+h2, h3 {
+    font-size: 2rem
+}
+
+h4, h5, h6 {
+    font-size: 1.5rem
+}
+
+small {
+    font-size: .8rem
+}
+
+select, option {
+    position: relative;
+    display: block;
+    border: none;
+    outline: none
+}
+
+select::before {
+    content: "-";
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: 0;
+    top: 0;
+    border-width: 0 10px 20px 10px;
+    border-color: #000 #0000;
+    border-style: solid
+}
+
+.banner {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    min-height: 300px;
+    width: 100%;
+    padding: 10px
+}
+
+.banner__img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+.banner__content {
+    z-index: 2
+}
+
+.banner__filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 100px var(--ax-black);
+    z-index: 1
+}
+
+.btn {
+    --color: var(--ax-white);
+    --back-color: var(--ax-black);
+    display: inline-block;
+    background-color: var(--back-color);
+    color: var(--color);
+    transition: .3s;
+    border-radius: 4px
+}
+
+.btn a {
+    color: inherit;
+    text-decoration: inherit
+}
+
+.btn > * {
+    border: 2px solid var(--back-color);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    display: block;
+    border-radius: inherit
+}
+
+.btn:hover {
+    background-color: var(--color);
+    color: var(--back-color)
+}
+
+.menu {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: -webkit-min-content;
+    grid-auto-columns: min-content;
+    gap: 5px
+}
+
+.menu .sub-menu {
+    display: none;
+    position: absolute;
+    z-index: 5
+}
+
+.menu .sub-menu:hover {
+    display: grid
+}
+
+.menu li {
+    position: relative;
+    transition: .3s
+}
+
+.menu li:hover > .sub-menu {
+    display: grid
+}
+
+.menu.vanila {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+    padding: 5px;
+    background: var(--ax-gray)
+}
+
+.menu.vanila li {
+    background: var(--ax-lightgray);
+    padding: 4px;
+    border-radius: 4px
+}
+
+.menu.vanila li a {
+    color: var(--ax-post)
+}
+
+.menu.vanila .sub-menu {
+    box-shadow: 0 0 4px var(--ax-lightgray);
+    border-radius: 4px;
+    background: var(--ax-gray);
+    padding: 4px;
+    gap: 4px
+}
+
+label {
+    cursor: pointer
+}
+
+.sub-menu {
+    display: grid
+}

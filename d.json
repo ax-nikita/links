@@ -1,0 +1,38 @@
+{
+  "steel": [
+    {
+      "type": "buy",
+      "qty": 0,
+      "date": "13.04.25",
+      "rg": "100",
+      "stock": 20
+    }
+  ],
+  "gold": [
+    {
+      "type": "buy",
+      "qty": 0,
+      "date": "13.04.25",
+      "rg": "100",
+      "stock": 0
+    }
+  ],
+  "silver": [
+    {
+      "type": "buy",
+      "qty": 0,
+      "date": "13.04.25",
+      "rg": "100",
+      "stock": 10
+    }
+  ],
+  "copper": [
+    {
+      "type": "buy",
+      "qty": 0,
+      "date": "13.04.25",
+      "rg": "100",
+      "stock": 20
+    }
+  ]
+}

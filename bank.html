@@ -59,12 +59,37 @@
         <span class="resource">Gold</span><br>
         <input type="number" name="qty" value="16" placeholder="qty"> = <span class="calc__cost">987</span> R.G <br> <span class="calc__snoska">(cost 5 R.G. for transaction)</span>
     </div>
+    <div data-id="deposit_calc" class="banner__content calc deposit_calc">
+        <p>I wanna
+        <select name="type" value="investment">
+            <option value="investment" selected>investment</option>
+            <option value="credit">credit</option>
+        </select><br>
+        <input name="qty" type="number" value="32" placeholder="qty"> <span class="resource">Gold</span><br>
+        for a period of time -
+        <select name="period">
+            <option value="1">1 mounth</option>
+            <option value="2" selected>2 mounth</option>
+            <option value="3">3 mounth</option>
+        </select><br>
+        at interest <select name="percent">
+            <option value="5">5%</option>
+            <option value="10" selected>10%</option>
+            <option value="15">15%</option>
+        </select> per month<br>
+        </p>
+        <p>
+            in <span class="span-period">1</span> month you will receive<br>
+            <strong class="span-resource-receive">5</strong> <span class="resource">Gold</span> and <strong class="span-rg-receive">~565*</strong> R.G<br>
+            <span class="warning" style="display: none">Warning! min investment from ~150 RG</span>
+        </p>
+         <span class="calc__snoska">*or bank bullion for this amount at the discretion of the bank<br>(cost 5 R.G. for transaction + 5 R.G. for per mounth)</span>
+    </div>
     <div class="banner__content links">
-        <a href="bank"
-           class="btn"> Bank </a>
+        <a href="index"
+           class="btn"> Main </a>
         <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRyjFRAAwVq5lusEL_Uw8sgVWsvDt_m6_mNKJg3CstRpWkoUT2ytlwi6e4xiLTsoVqwMp4xn2gIrEae/pubhtml"
            class="btn"> Price List </a>
-        <a href="https://metalismaticus.github.io/TOPS/" class="btn"> Metalismatic guide </a>
     </div>
 </main>
 <footer class="banner">

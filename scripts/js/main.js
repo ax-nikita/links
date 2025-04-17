@@ -34,10 +34,10 @@
     let
         get_data = new axRequest('d.json'),
         base_prices = {
-            'steel': 5,
+            'steel': 5.1,
             'gold': 5,
-            'silver': 5,
-            'copper': 1,
+            'silver': 7.5,
+            'copper': 1.3,
         },
         rg_pull = 3000;
 
@@ -71,19 +71,24 @@
             el.axQS('.price__in-stock strong').axVal(stock);
             el.axQS('.price__rg').axVal(Math.round(price * 10) / 10 + ' r.g.');
 
-            el.click();
+            if(type === 'steel') {
+                el.click();
+            }
         });
 
         el.addEventListener('click', () => {
-            axQS('.calc')
-                .axAttribute('type', type)
-                .axAttribute('price', price)
-                .axAttribute('base_price', base_price);
-            axQS('.calc span').axVal(el.axQS('span').axVal());
-            axQS('.calc').update();
+            axQSA('.calc').forEach((calc) => {
+                calc.axAttribute('type', type)
+                    .axAttribute('price', price)
+                    .axAttribute('base_price', base_price);
+
+                calc.axQSA('.resource').forEach(res => {
+                    res.axVal(el.axQS('span').axVal());
+                });
+
+                calc.update();
+            });
         });
-
-
     });
 
     new axModularFunction('calc', (el) => {
@@ -107,6 +112,52 @@
                 result = getCost(type, base_price, price, qty);
 
             el.axQS('.calc__cost').axVal(Math.round(result.cost));
+        }
+
+        el.axQSA('input, select').forEach((input) => (
+                input.addEventListener('change', () => {
+                    el.update();
+                })
+            )
+        );
+    });
+
+    new axModularFunction('deposit_calc', (el) => {
+        el.update = () => {
+            let
+                price = el.axAttribute('price') * 1,
+                base_price = el.axAttribute('base_price'),
+                qty = el.axQS('[name="qty"]').axVal(),
+                type = el.axQS('[name="type"]').value,
+                period = el.axQS('[name="period"]').value,
+                percent = el.axQS('[name="percent"]').value,
+                full_receive = qty * (percent * period / 100 + 1)
+                resource_receive = Math.floor(full_receive * ((40 - percent * 2) / 100));
+
+            if (resource_receive < 1) {
+                resource_receive = 1;
+            }
+
+            switch (type) {
+                case "investment":
+                    type = "buy";
+                    break;
+                case "credit":
+                    type = "sell";
+                    break;
+            }
+
+            let
+                rg_receive = getCost(type, base_price, price, qty - resource_receive).cost * (percent * period / 100 + 1);
+
+            el.axQS('.span-rg-receive').axVal(Math.round(rg_receive));
+            el.axQS('.span-resource-receive').axVal(resource_receive);
+            el.axQS('.span-period').axVal(period);
+            if (rg_receive > 100) {
+                el.axQS('.warning').axAttribute('style', 'display: none');
+            } else {
+                el.axQS('.warning').axAttribute('style', '');
+            }
         }
 
         el.axQSA('input, select').forEach((input) => (

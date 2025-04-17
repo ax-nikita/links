@@ -19,7 +19,7 @@ RewriteRule ^ - [R=404,L]
 # Добавление .php к запрашиваемому URI, если файл существует
 RewriteCond %{REQUEST_FILENAME} !config$
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.php [L]
+RewriteRule ^(.*)$ $1.html [L]
 
 # Обработка ошибок 404
 # Если запрашиваемый файл не соответствует разрешенным типам

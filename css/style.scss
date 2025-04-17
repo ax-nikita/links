@@ -1,13 +1,17 @@
 html {
   font-family: "Roboto Light", Arial;
+  width: auto;
+  height: auto;
 }
 
 body {
+  position: relative;
   background: #0007;
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
   text-shadow: 0 0 2rem black, 0 0 2rem black, 0 0 2rem black;
   color: white;
+  grid-template-rows: max-content;
 }
 
 h1 {
@@ -17,10 +21,24 @@ h1 {
   }
 }
 
+header {
+  max-height: max-content;
+}
+main {
+  grid-template-rows: max-content;
+}
+
+
 @media (max-width: 980px) {
   html {
     font-size: 18px;
   }
+}
+
+.resource {
+  text-decoration: underline;
+  font-style: italic;
+  color: #ffbb1d;
 }
 
 .btn {
@@ -81,6 +99,9 @@ h1 {
 
 .banner {
   min-height: auto;
+  &__content {
+    max-width: 450px;
+  }
 }
 
 .background {
@@ -92,9 +113,14 @@ h1 {
 
 .calc {
   font-size: 2rem;
+  line-height: 2rem;
+  background: darkgoldenrod;
+  padding: 14px;
+  border-radius: 4px;
   input {
     font-size: 2rem;
     width: 10rem;
+    margin: 0.2rem 0;
   }
   select {
     display: inline-grid;
@@ -102,10 +128,11 @@ h1 {
   }
   &__snoska {
     font-size: 1rem;
-    text-align: center;
+    text-align: end;
     float: right;
   }
 }
+
 
 @keyframes backgroundAnimation {
   0%,100% {

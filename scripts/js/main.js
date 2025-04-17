@@ -7,8 +7,6 @@
             return 0;
         }
 
-        console.dir(type);
-
         switch (type) {
             case "buy":
                 qty_m *= -1;
@@ -34,7 +32,7 @@
     let
         get_data = new axRequest('d.json'),
         base_prices = {
-            'steel': 5.1,
+            'steel': 5,
             'gold': 5,
             'silver': 7.5,
             'copper': 1.3,
@@ -63,7 +61,19 @@
                 }
 
                 let
+                    result;
+
+                if (transaction.type === 'investment') {
+                    let
+                        full_receive = qty * (transaction.percent * transaction.period / 100 + 1),
+                        resource_receive = Math.floor(full_receive * ((40 - transaction.percent * 2) / 100));
+
+                    result = getCost('buy', base_price, price, full_receive - resource_receive);
+                } else {
                     result = getCost(transaction.type, base_price, price, qty);
+
+                }
+
 
                 price = result.new_price;
             });
@@ -71,7 +81,7 @@
             el.axQS('.price__in-stock strong').axVal(stock);
             el.axQS('.price__rg').axVal(Math.round(price * 10) / 10 + ' r.g.');
 
-            if(type === 'steel') {
+            if (type === 'steel') {
                 el.click();
             }
         });
@@ -131,7 +141,7 @@
                 type = el.axQS('[name="type"]').value,
                 period = el.axQS('[name="period"]').value,
                 percent = el.axQS('[name="percent"]').value,
-                full_receive = qty * (percent * period / 100 + 1)
+                full_receive = qty * (percent * period / 100 + 1),
                 resource_receive = Math.floor(full_receive * ((40 - percent * 2) / 100));
 
             if (resource_receive < 1) {

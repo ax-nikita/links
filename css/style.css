@@ -29,6 +29,13 @@ main {
   grid-template-rows: max-content;
 }
 
+.rules h2, .rules h3, .rules ul, .rules p {
+  margin-bottom: 2rem;
+}
+.rules li {
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 980px) {
   html {
     font-size: 18px;

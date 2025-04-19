@@ -6,6 +6,15 @@
       "date": "13.04.25",
       "rg": "100",
       "stock": 8
+    },
+    {
+      "type": "investment",
+      "qty": 32,
+      "date": "20.04.25",
+      "rg": "100",
+      "percent":5,
+      "period":1,
+      "stock": 40
     }
   ],
   "gold": [

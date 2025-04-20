@@ -1,5 +1,5 @@
 (() => {
-    function getCost(type, base_price, price, qty) {
+    function getCost(type, base_price, rg_pull, price, qty) {
         let
             qty_m = qty;
 
@@ -37,12 +37,18 @@
             'silver': 7.5,
             'copper': 1.3,
         },
-        rg_pull = 3000;
+        base_rg_pull = {
+            'steel': 5000,
+            'gold': 5000,
+            'silver': 7500,
+            'copper': 1300,
+        };
 
     new axModularFunction('price', (el) => {
         let
             type = el.axAttribute('bar'),
             base_price = base_prices[type],
+            rg_pull = base_rg_pull[type],
             price = base_price,
             stock = 0;
 
@@ -68,9 +74,9 @@
                         full_receive = qty * (transaction.percent * transaction.period / 100 + 1),
                         resource_receive = Math.floor(full_receive * ((40 - transaction.percent * 2) / 100));
 
-                    result = getCost('buy', base_price, price, full_receive - resource_receive);
+                    result = getCost('buy', base_price, rg_pull, price, full_receive - resource_receive);
                 } else {
-                    result = getCost(transaction.type, base_price, price, qty);
+                    result = getCost(transaction.type, base_price,  rg_pull, price, qty);
 
                 }
 
@@ -90,7 +96,8 @@
             axQSA('.calc').forEach((calc) => {
                 calc.axAttribute('type', type)
                     .axAttribute('price', price)
-                    .axAttribute('base_price', base_price);
+                    .axAttribute('base_price', base_price)
+                    .axAttribute('rg_pull', rg_pull);
 
                 calc.axQSA('.resource').forEach(res => {
                     res.axVal(el.axQS('span').axVal());
@@ -106,6 +113,7 @@
             let
                 price = el.axAttribute('price') * 1,
                 base_price = el.axAttribute('base_price'),
+                rg_pull = el.axAttribute('rg_pull'),
                 qty = el.axQS('input').axVal(),
                 type = el.axQS('select').value;
 
@@ -119,7 +127,7 @@
             }
 
             let
-                result = getCost(type, base_price, price, qty);
+                result = getCost(type, base_price,  rg_pull, price, qty);
 
             el.axQS('.calc__cost').axVal(Math.round(result.cost));
         }
@@ -137,6 +145,7 @@
             let
                 price = el.axAttribute('price') * 1,
                 base_price = el.axAttribute('base_price'),
+                rg_pull = el.axAttribute('rg_pull'),
                 qty = el.axQS('[name="qty"]').axVal(),
                 type = el.axQS('[name="type"]').value,
                 period = el.axQS('[name="period"]').value,
@@ -158,7 +167,7 @@
             }
 
             let
-                rg_receive = getCost(type, base_price, price, qty - resource_receive).cost * (percent * period / 100 + 1);
+                rg_receive = getCost(type, base_price, rg_pull, price, qty - resource_receive).cost * (percent * period / 100 + 1);
 
             el.axQS('.span-rg-receive').axVal(Math.round(rg_receive));
             el.axQS('.span-resource-receive').axVal(resource_receive);
